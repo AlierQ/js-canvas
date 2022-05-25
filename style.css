@@ -3,9 +3,9 @@
     padding: 0;
     box-sizing: border-box;
 }
-
 #tool{
     padding-bottom: 5px;
+    /* overflow: hidden; */
 }
 
 #tool .tool-title{
@@ -14,6 +14,7 @@
     padding: 10px 0;
     padding-left: 10px;
     color:cadetblue;
+    /* float: left; */
 }
 
 #tool .color-title{
@@ -25,21 +26,24 @@
     background-size: 23px;
 }
 
+#tool .tool-content div{
+    padding:2px 0;
+}
+
 #tool .size-title{
     font-weight: bold;
     color: #666;
-    margin-left: 30px;
+    margin-left: 10px;
     padding-left: 26px;
     background: url(./img/pencil.png) no-repeat left center;
     background-size: 23px;
 }
 
-
-
 #tool #chooseColor{
     outline: 0;
     border: none;
     background-color: #fff;
+    border-radius: 10px;
     vertical-align: middle;
 }
 
@@ -66,9 +70,48 @@
     color: #666;
 }
 
+#tool .draw-button{
+    text-align: center;
+    border: none;
+    height: 24px;
+    width: 100px;
+    cursor: pointer;
+    text-indent: 22px;
+    border-radius: 5px;
+    color: #333;
+    margin-left: 10px;
+    margin-top: 5px;
+    height: 30px;
+}
+
+#tool .draw-line{
+    background: #ccc url(./img/line.png) no-repeat 10px center;
+    background-size: 24px;
+}
+
+#tool .draw-rectangle{
+    background: #ccc url(./img/rectangle.png) no-repeat 10px center;
+    background-size: 20px;
+}
+
+#tool .draw-circle{
+    background: #ccc url(./img/circle.png) no-repeat 10px center;
+    background-size: 20px;
+}
+
+#tool .draw-eraser{
+    background: #ccc url(./img/eraser.png) no-repeat 10px center;
+    background-size: 20px;
+}
+
+#tool .draw-clear{
+    background: #ccc url(./img/clear.png) no-repeat 10px center;
+    background-size: 20px;
+}
+
 #canvas{
     height: 96.3vh;
-    border: 2px solid orange;
+    border: 3px solid orange;
     border-radius: 8px;
     position: relative;
 }

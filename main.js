@@ -1,20 +1,34 @@
+// 当前绘制模式
+var model = 'line';
 // 是否按下鼠标
 var down = false;
 // 画笔颜色
 var color = '#000000';
 // 画笔大小
-var size = 16;
+var size = 3;
+// 开始坐标
+var begin_X = 0;
+var begin_Y = 0;
+// 结束坐标
+var end_X = 0;
+var end_Y = 0;
+// 当前坐标
+// var now_X = 0;
+// var now_Y = 0;
 
 // tool工具栏
 var tool = document.getElementById("tool");
 // 画板
 var canvas = document.getElementById("canvas");
+// 子画板
+var canvas_son = document.getElementById("canvas-son");
 // 取色板
 var chooseColor = document.getElementById("chooseColor");
 // 色值
 var chooseColorValue = document.getElementById("chooseColorValue");
 // 画笔大小
 var pencilSize = document.getElementById("pencilSize");
+
 
 // 取色板失去焦点事件
 chooseColor.addEventListener('blur',(e)=>{
@@ -42,35 +56,71 @@ pencilSize.addEventListener('change',(e)=>{
 //     canvas.appendChild(div);
 // })
 
-canvas.addEventListener('mousedown',(e)=>{
+// pc使用
+
+canvas_son.addEventListener('mousedown',(e)=>{
     down = true;
-    // console.log('鼠标按下');
+    var ctx = canvas_son.getContext('2d');
+    ctx.beginPath();
 })
 
-canvas.addEventListener('mouseup',(e)=>{
+canvas_son.addEventListener('mouseup',(e)=>{
     down = false;
-    // console.log('鼠标抬起');
+    var ctx = canvas_son.getContext('2d');
+    ctx.closePath();
 })
 
-canvas.addEventListener('mousemove',(e)=>{
+canvas_son.addEventListener('mousemove',(e)=>{
     if(down){
-        // 创建div
-        let div = document.createElement('div');
-        div.classList.add('point');
-        div.style.left=e.clientX+'px';
-        // 这里有一个小 bug
-        // 因为加了tool工具栏，所以offsetX/Y才是真实的高度
-        // 但是使用 offsetX/Y 会出现一些奇怪的点，在左上角
-        // 不得已只有用clientX/Y减去上面tool工具栏的高度，来获取鼠标位置
-        div.style.top=e.clientY-tool.offsetHeight+'px';
-        div.style.background=color;
-        div.style.width=size + 'px';
-        div.style.height=size + 'px';
-        canvas.appendChild(div);
-        console.log(size);
-        // console.log('鼠标按下移动');
-    }else{
-        // console.log('鼠标抬起移动');
+        if(model==='line'){ //绘制线
+            var ctx = canvas_son.getContext('2d');
+            ctx.strokeStyle = color;
+            ctx.lineCap = "round";
+            ctx.lineWidth = size;
+            ctx.lineTo(e.clientX,e.clientY-tool.offsetHeight)
+            ctx.stroke();
+        }
+        else if(model==='clear'){
+            var ctx = canvas_son.getContext('2d');
+            ctx.clearRect(e.clientX,e.clientY-tool.offsetHeight, 16, 16);
+        }
+    }
+    else{
+        
+    }
+})
+
+
+// 手机使用
+canvas_son.addEventListener('touchstart',(e)=>{
+    down = true;
+    var ctx = canvas_son.getContext('2d');
+    ctx.beginPath();
+})
+
+canvas_son.addEventListener('touchend',(e)=>{
+    down = false;
+    var ctx = canvas_son.getContext('2d');
+    ctx.closePath();
+})
+
+canvas_son.addEventListener('touchmove',(e)=>{
+    console.log('mole');
+    if(down){
+        if(model==='line'){ //绘制线
+            var ctx = canvas_son.getContext('2d');
+            ctx.strokeStyle = color;
+            ctx.lineCap = "round";
+            ctx.lineWidth = size;
+            ctx.lineTo(e.targetTouches[0].pageX,e.targetTouches[0].pageY-tool.offsetHeight)
+            ctx.stroke();
+        }else if(model==='clear'){
+            var ctx = canvas_son.getContext('2d');
+            ctx.clearRect(e.targetTouches[0].pageX,e.targetTouches[0].pageY-tool.offsetHeight, 16, 16);
+        }
+    }
+    else{
+        
     }
 })
 
@@ -80,6 +130,22 @@ function init(){
     var clientHeight =  document.documentElement.clientHeight;
     // 减去工具栏高度
     canvas.style.height=(clientHeight-tool.offsetHeight) + 'px';
+    // 设置Canvas的大小
+    canvas_son.height = canvas.offsetHeight;
+    canvas_son.width = canvas.offsetWidth;
+}
+
+// 设置绘制模式
+function setModel(value){
+    model = value;
+}
+
+// 清空canvas画板
+document.getElementById("empty").onclick = ()=>{
+    var w = canvas_son.offsetWidth;
+    var h = canvas_son.offsetHeight;
+    var ctx = canvas_son.getContext('2d');
+    ctx.clearRect(0, 0, w, h);
 }
 
 // 初始加载事件

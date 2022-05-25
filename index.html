@@ -7,16 +7,31 @@
     <link rel="stylesheet" href="style.css">
     <title>Canvas 小画板</title>
 </head>
-<body>
+<body style="overflow: hidden">
     <div id="tool">
         <div class="tool-title">Canvas 小画板</div>
-        <label class="color-title" for="">颜色选择：</label>
-        <input id="chooseColor" type="color">
-        <input id="chooseColorValue" type="text" value="#000000" disabled>
-        <label class="size-title" for="">画笔大小：</label>
-        <input id="pencilSize" type="number" value="16">
+        <div class="tool-content">
+            <div>
+                <label class="color-title" for="">颜色选择：</label>
+                <input id="chooseColor" type="color">
+                <input id="chooseColorValue" type="text" value="#000000" disabled>
+            </div>
+            <div>
+                <label class="size-title" for="">画笔大小：&nbsp;</label>
+                <input id="pencilSize" type="number" value="3">
+            </div>
+            <div> 
+                <button onclick="setModel('line')" id="line" class="draw-button draw-line">绘制线条</button>
+                <button onclick="setModel('rectangle')" id="rectangle" class="draw-button draw-rectangle">绘制矩形</button>
+                <button onclick="setModel('circle')" id="circle" class="draw-button draw-circle">绘制圆形</button>
+                <button onclick="setModel('clear')" id="circle" class="draw-button draw-eraser">橡皮擦</button>
+                <button id="empty" class="draw-button draw-clear">清空画板</button>
+            </div>
+        </div>
     </div>
-    <div id="canvas"></div>
+    <div id="canvas">
+        <canvas id="canvas-son"></canvas>
+    </div>
 </body>
 <script src="main.js"></script>
 </html>
