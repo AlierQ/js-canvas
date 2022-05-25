@@ -1,0 +1,80 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+#tool{
+    padding-bottom: 5px;
+}
+
+#tool .tool-title{
+    font-weight: bold;
+    font-size: 30px;
+    padding: 10px 0;
+    padding-left: 10px;
+    color:cadetblue;
+}
+
+#tool .color-title{
+    font-weight: bold;
+    color: #666;
+    margin-left: 10px;
+    padding-left: 30px;
+    background: url(./img/color.png) no-repeat left center;
+    background-size: 23px;
+}
+
+#tool .size-title{
+    font-weight: bold;
+    color: #666;
+    margin-left: 30px;
+    padding-left: 26px;
+    background: url(./img/pencil.png) no-repeat left center;
+    background-size: 23px;
+}
+
+
+
+#tool #chooseColor{
+    outline: 0;
+    border: none;
+    background-color: #fff;
+    vertical-align: middle;
+}
+
+#tool #chooseColorValue{
+    outline: 0;
+    height: 20px;
+    border: 2px solid #ccc;
+    vertical-align: middle;
+    border-radius: 2px;
+    text-indent: 10px;
+    width: 80px;
+    color: #666;
+}
+
+#tool #pencilSize{
+    outline: 0;
+    height: 20px;
+    border: 2px solid #ccc;
+    vertical-align: middle;
+    border-radius: 2px;
+    text-indent: 10px;
+    height: 24px;
+    width: 50px;
+    color: #666;
+}
+
+#canvas{
+    height: 96.3vh;
+    border: 2px solid orange;
+    border-radius: 8px;
+    position: relative;
+}
+
+.point{
+    background-color: blue;
+    border-radius: 50%;
+    position: absolute;
+}

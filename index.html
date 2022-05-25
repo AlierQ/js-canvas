@@ -4,9 +4,19 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Canvas 画板</title>
+    <link rel="stylesheet" href="style.css">
+    <title>Canvas 小画板</title>
 </head>
 <body>
-    
+    <div id="tool">
+        <div class="tool-title">Canvas 小画板</div>
+        <label class="color-title" for="">颜色选择：</label>
+        <input id="chooseColor" type="color">
+        <input id="chooseColorValue" type="text" value="#000000" disabled>
+        <label class="size-title" for="">画笔大小：</label>
+        <input id="pencilSize" type="number" value="16">
+    </div>
+    <div id="canvas"></div>
 </body>
+<script src="main.js"></script>
 </html>
