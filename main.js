@@ -74,6 +74,8 @@ canvas_son.addEventListener('mousemove',(e)=>{
     if(down){
         if(model==='line'){ //绘制线
             var ctx = canvas_son.getContext('2d');
+            // 绘制虚线
+            ctx.setLineDash([2, 15]);
             ctx.strokeStyle = color;
             ctx.lineCap = "round";
             ctx.lineWidth = size;
